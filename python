@@ -1,0 +1,75 @@
+class Student:
+    def __init__(self, student_id, name):
+        self.student_id = student_id
+        self.name = name
+        self.enrolled_courses = {}
+
+    def enroll_course(self, course):
+        self.enrolled_courses[course.course_id] = course
+        print(f"{self.name} enrolled in {course.name}.")
+
+    def view_enrolled_courses(self):
+        print(f"{self.name}'s Enrolled Courses:")
+        for course_id, course in self.enrolled_courses.items():
+            print(f"- {course.name} (Course ID: {course_id})")
+
+
+class Course:
+    def __init__(self, course_id, name):
+        self.course_id = course_id
+        self.name = name
+        self.students = {}
+
+    def add_student(self, student):
+        self.students[student.student_id] = student
+        print(f"{student.name} added to {self.name}.")
+
+    def view_enrolled_students(self):
+        print(f"{self.name}'s Enrolled Students:")
+        for student_id, student in self.students.items():
+            print(f"- {student.name} (Student ID: {student_id})")
+
+
+class Grade:
+    def __init__(self, student, course, grade):
+        self.student = student
+        self.course = course
+        self.grade = grade
+
+    def display_grade(self):
+        print(f"Grade for {self.student.name} in {self.course.name}: {self.grade}")
+
+
+# Example Usage:
+
+# Create Students
+student1 = Student(1, "Alice")
+student2 = Student(2, "Bob")
+
+# Create Courses
+course1 = Course(101, "Mathematics")
+course2 = Course(102, "Computer Science")
+
+# Enroll Students in Courses
+student1.enroll_course(course1)
+student2.enroll_course(course2)
+
+# View Enrolled Courses for Students
+student1.view_enrolled_courses()
+student2.view_enrolled_courses()
+
+# Add Students to Courses
+course1.add_student(student1)
+course2.add_student(student2)
+
+# View Enrolled Students for Courses
+course1.view_enrolled_students()
+course2.view_enrolled_students()
+
+# Assign Grades
+grade1 = Grade(student1, course1, "A")
+grade2 = Grade(student2, course2, "B")
+
+# Display Grades
+grade1.display_grade()
+grade2.display_grade()
